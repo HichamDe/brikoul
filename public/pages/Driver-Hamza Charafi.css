@@ -88,15 +88,30 @@ html, body {
         word-wrap: break-word"
 }
 .Accept-1{
-        width: 86px;
+        width: 86px; 
         height: 20px;
         left: 1055px;
-        top: 525px;
+        top: 264px; 
         position: absolute;
+        color: white; 
         font-size: 16px;
         font-family: Inter;
-        font-weight: 400;
+        font-weight: 400; 
         word-wrap: break-word
+}
+.Accept-1{
+        width: 106px;
+        height: 20px; 
+        left: 1044px;
+        top: 525px;
+        position: absolute;
+        color:white;
+        font-size: 16px; 
+        font-family: Inter;
+        font-weight: 400;
+        word-wrap: break-word ;
+        background-color: #F9D700;
+        border: 0px;
 }
       
       
