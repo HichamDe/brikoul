@@ -1,0 +1,102 @@
+html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+.container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: #E9EBF2;
+      }
+      
+.bar {
+        width: 830px;
+        height: 77px;
+        left: 0;
+        top: -3px;
+        position: absolute;
+      }
+      
+.map {
+        width: 749px;
+        height: 519px;
+        left: 10px;
+        top: 66px;
+        position: absolute;
+        box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.07);
+        border-radius: 10px;
+      }
+      
+.Client-1 {
+        width: 100px;
+        height: 100px;
+        left: 557px;
+        top: 243.71px;
+        position: absolute;
+        transform: rotate(-45deg);
+        transform-origin: 0 0;
+        background: #F83A3A;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 5px;
+        border-left: 2.50px white solid;
+        border-top: 2.50px white solid;
+        border-right: 2.50px white solid;
+        border-bottom: 2.50px white solid;
+}
+.Client-2{
+        width: 100px;
+        height: 100px;
+        left: 117px;
+        top: 197.71px;
+        position: absolute;
+        transform: rotate(-45deg);
+        transform-origin: 0 0;
+        background: #F83A3A;
+        border-top-left-radius: 50px; 
+        border-top-right-radius: 50px; 
+        border-bottom-right-radius: 50px; 
+        border-bottom-left-radius: 5px;
+        border-left: 3px white solid;
+        border-top: 3px white solid;
+        border-right: 3px white solid;
+        border-bottom: 3px white solid"
+}
+      
+.Client-Name-1 {
+        left: 567px;
+        top: 173px;
+        position: absolute;
+        color: #333333;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 400;
+        word-wrap: break-word;
+}
+.Client-Name-2{
+        left: 117px;
+        top: 127px;
+        position: absolute;
+        color: #333333;
+        font-size: 18px; 
+        font-family: Inter; 
+        font-weight: 400;
+        word-wrap: break-word"
+}
+.Accept-1{
+        width: 86px;
+        height: 20px;
+        left: 1055px;
+        top: 525px;
+        position: absolute;
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: 400;
+        word-wrap: break-word
+}
+      
+      
