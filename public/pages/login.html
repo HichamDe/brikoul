@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+    }
+
+    .container {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #F9D700;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] ,select{
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: black;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-size: medium;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" placeholder="Enter your email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+      <label for="user_type">User Type:</label>
+      <select id="user_type" name="user_type">
+        <option value="driver">Driver</option>
+        <option value="client">Client</option>
+      </select>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <script>
+    function login() {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        let user_type = document.getElementById('user_type').value;
+        
+        
+        if (email === '' || password === '') {
+          alert('Please enter email and password.');
+          return;
+        }
+        const db = new sqlite3.Database(':memory:');
+        db.get('SELECT * FROM client WHERE email = ? AND password = ? AND user_type = ?', [email, password,user_type], (err, row) => {
+            if (err) {
+              console.error(err);
+              res.status(500).json({ success: false, error: 'An error occurred while processing the request.' });
+            } else if (row) {
+              res.json({ success: true, message: 'Login successful!' });
+            } else {
+              res.json({ success: false, message: 'Invalid email or password.' });
+            }
+        })
+    }
+  </script>
+</body>
+</html>
+
