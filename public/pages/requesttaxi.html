@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Request Taxi Form</title>
+  <style>
+    body {
+        background-color: black;
+    }
+    .popup {
+        max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+        background-color: #F9D700;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-group button {
+      padding: 8px 15px;
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <h2>Request Taxi</h2>
+    <form id="requestForm">
+      <div class="form-group">
+        <label for="clientName">Client Name:</label>
+        <input type="text" id="clientName" name="clientName" required>
+      </div>
+      <div class="form-group">
+        <label for="departure">Departure:</label>
+        <input type="text" id="departure" name="departure" required>
+      </div>
+      <div class="form-group">
+        <label for="arrival">Arrival:</label>
+        <input type="text" id="arrival" name="arrival" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" required>
+      </div>
+      <div class="form-group">
+        <label for="numberOfPassengers">Number of Passengers:</label>
+        <input type="number" id="numberOfPassengers" name="numberOfPassengers" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('requestForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Retrieve form data
+      const clientName = document.getElementById('clientName').value;
+      const departure = document.getElementById('departure').value;
+      const arrival = document.getElementById('arrival').value;
+      const time = document.getElementById('time').value;
+      const numberOfPassengers = parseInt(document.getElementById('numberOfPassengers').value);
+      const price = parseFloat(document.getElementById('price').value);
+
+      // Create a new RequestTaxi object
+      const request = new RequestTaxi(clientName, departure, arrival, time, numberOfPassengers, price);
+
+      // Add the request to the database
+      request.addRequest();
+
+      // Reset the form
+      document.getElementById('requestForm').reset();
+
+ 
+      alert('Request submitted successfully!');
+    });
+  </script>
+</body>
+</html>
