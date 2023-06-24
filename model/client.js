@@ -8,7 +8,7 @@ class Client {
   }
 
   addClient() {
-    const db = new sqlite3.Database('database/database.db'); 
+    const db = new sqlite3.Database('../database/database.db'); 
 
     // Insert client data into the 'clients' table
     const sql = `INSERT INTO clients (full_name, email, phone) VALUES (?, ?, ?)`;
@@ -25,3 +25,6 @@ class Client {
     db.close();
   }
 }
+// Create a new client and insert into the database
+const client = new Client('aya alaoui', 'aya.alaoui@gmail.com', '0621456587');
+client.addClient();

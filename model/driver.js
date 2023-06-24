@@ -1,18 +1,18 @@
 const sqlite3 = require('sqlite3').verbose();
 
 class Driver {
-  constructor(name, email, phoneNumber) {
-    this.name = name;
+  constructor(full_name, email, phone) {
+    this.full_name = full_name;
     this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.phone = phone;
   }
 
   addDriver() {
-    const db = new sqlite3.Database('database/database.db'); 
+    const db = new sqlite3.Database('../database/database.db'); 
 
     // Insert driver data into the 'drivers' table
-    const sql = `INSERT INTO drivers (name, email, phoneNumber) VALUES (?, ?, ?)`;
-    const values = [this.name, this.email, this.phoneNumber];
+    const sql = `INSERT INTO drivers (full_name, email, phone) VALUES (?, ?, ?)`;
+    const values = [this.full_name, this.email, this.phone];
 
     db.run(sql, values, function(err) {
       if (err) {

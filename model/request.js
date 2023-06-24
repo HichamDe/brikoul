@@ -11,7 +11,7 @@ class RequestTaxi {
   }
 
   addRequest() {
-    const db = new sqlite3.Database('database/database.db'); 
+    const db = new sqlite3.Database('../database/database.db'); 
 
     // Insert request data into the 'requests' table
     const sql = `INSERT INTO requests (clientName, departure, arrival, time, numberOfPassengers, price) VALUES (?, ?, ?, ?, ?, ?)`;
@@ -36,7 +36,7 @@ class RequestTaxi {
   }
 
   updateRequest() {
-    const db = new sqlite3.Database('database/database.db'); 
+    const db = new sqlite3.Database('../database/database.db'); 
 
     // Update request data in the 'requests' table
     const sql = `UPDATE requests SET departure = ?, arrival = ?, time = ?, numberOfPassengers = ?, price = ? WHERE clientName = ?`;
@@ -61,7 +61,7 @@ class RequestTaxi {
   }
 
   deleteRequest() {
-    const db = new sqlite3.Database('database/database.db'); 
+    const db = new sqlite3.Database('../database/database.db'); 
 
     // Delete request data from the 'requests' table
     const sql = `DELETE FROM requests WHERE clientName = ?`;
