@@ -77,7 +77,8 @@
           alert('Please enter email and password.');
           return;
         }
-        const db = new sqlite3.Database(':memory:');
+        const sqlite3 = require('sqlite3').verbose();
+        const db = new sqlite3.Database('database/database.db');
         db.get('SELECT * FROM client WHERE email = ? AND password = ? AND user_type = ?', [email, password,user_type], (err, row) => {
             if (err) {
               console.error(err);
