@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <title>Client</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -19,45 +20,96 @@
 
 <body>
 
-    <div id="map"></div>
+    <div class="conatiner">
+        <img src="../img/menu-top.jpg" alt="logo" style="width:1400px;height:30px">
+    </div>
+    <nav class="container-fluid " style="background-color: black;">
+        <div class="container d-flex  justify-content-between ">
+            <img src="../img/WhatsApp Image 2023-06-24 à 23.53.04.jpg" alt="logo"
+                style="width:80px;height:20px ;margin-top:12px">
+            <img src="../img/6239059 (1).png" alt="MENU" style="width:30px;height:30px;margin-bottom :3px ">
+            <link rel="stylesheet" href="">
+    </nav>
+    </div>
+    <div class="container d-flex">
+        <div class="map d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
+            <img src="../img/maps.png" alt="maps" style="width:600px;height: 600px; ">
+
+        </div>
+
+        <div class="d-inline-block " style="width: 400px;height:90vh;padding: 15px;">
+            <div>
+                <div class="client-1 " style="border: 2px solid black;border-radius: 20px;padding:10px">
+                    <div class="d-flex">
+                        <img class="Img-1" src="../img/Moroccan Jabador.jpeg" alt="logo"
+                            style="width: 60px;height: 60px; border-radius: 40px;">
+
+                        <h3 style="margin: 10px;">Mohamed Alami</h3>
+                    </div>
+
+                    <p>Depart: Inezgane</p>
+                    <p>Arivee: Agadir</p>
+                    <p>Nombre de personne: 4</p>
+                    <p>Temps:</p>
+                    <button
+                        style="background-color: #F9D700;border: 2px solid #F9D700;border-radius: 10px; color:white;">ACCEPTER</button>
+                    <button
+                        style="background-color: #F9D700;border: 2px solid #F9D700; border-radius: 10px;color:white;">REFUSER</button>
+                </div>
+                <div>
+                    <div class="client-1 "
+                        style="border: 2px solid black;border-radius: 20px;padding:10px ;margin-top:10px">
+                        <div class="d-flex">
+                            <img class="Img-1" src="../img/eSW - WITS - top right.png" alt="logo"
+                                style="width: 60px;height: 60px; border-radius: 40px;">
+
+                            <h3 style="margin: 10px;">Maroua Alaoui</h3>
+                        </div>
+
+                        <p>Depart: Inezgane</p>
+                        <p>Arivee: HAY Salam</p>
+                        <p>Nombre de personne: 2</p>
+                        <p>Temps:</p>
+                        <button
+                            style="background-color: #F9D700;border: 2px solid #F9D700;border-radius: 10px; color:white;">ACCEPTER</button>
+                        <button
+                            style="background-color: #F9D700;border: 2px solid #F9D700; border-radius: 10px;color:white;">REFUSER</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
 
-        navigator.geolocation.getCurrentPosition(position => {
-            socket.emit("online", {
-                id: 0,
-                type: "client",
-                longitude: position.coords.longitude,
-                latitude: position.coords.latitude
+            navigator.geolocation.getCurrentPosition(position => {
+                socket.emit("online", {
+                    id: 0,
+                    type: "client",
+                    longitude: position.coords.longitude,
+                    latitude: position.coords.latitude
+                })
             })
-        })
 
-        let map = L.map('map').setView([30.35937, -9.52816], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-        let myIcon = L.icon({
-            iconUrl: 'img/marker-icon.png',
-            iconSize: [97, 119],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76],
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]
-        });
-        socket.on("all-working-drivers", (drivers) => {
-            drivers.forEach(driver => {
-                L.marker([driver.latitude,driver.longitude], {
-                    title: "Hmad Obihi",
-                    icon:myIcon
-                }).addTo(map)
-                .bindPopup("<b>Call Me!</b><br>I am Hmad obihi.");
-            });
-        })
+            let map = L.map('map').setView([30.35937, -9.52816], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
 
-    </script>
+            socket.on("all-working-drivers", (drivers) => {
+                drivers.forEach(driver => {
+                    L.marker([driver.latitude, driver.longitude], {
+                        title: "Hmad Obihi",
+                        // icon:myIcon
+                    }).addTo(map)
+                        .bindPopup("<b>Call Me!</b><br>I am Hmad obihi.");
+                });
+            })
+
+        </script>
 </body>
 
 </html>
