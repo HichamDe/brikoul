@@ -101,16 +101,16 @@ io.on("connection", (socket) => {
     });
 
     socket.on("taxi-request", (data) => {
-        console.log(data);
         let { emitter, receiver, content } = data;
         emitter.socketId = socket.id;
         clients.forEach(client => {
             if (client.socketId === socket.id) {
                 emitter = {
+                    socketId: socket.id,
                     clientId: client.clientId,
+                    full_name: emitter.full_name,
                     latitude: client.latitude,
-                    longitude: client.longitude,
-                    socketId: socket.id
+                    longitude: client.longitude
                 }
             }
         })
@@ -120,19 +120,25 @@ io.on("connection", (socket) => {
 
         });
 
-        let request = new RequestTaxi(
-            emitter.clientId,
-            content.departure,
-            content.arrival,
-            content.time,
-            content.numberOfPassengers,
-            content.price,
-            receiver.driverId,
-            0
-        )
-        request.add();
+        // let request = new RequestTaxi(
+        //     socket.io,
+        //     emitter.clientId,
+        //     content.departure,
+        //     content.arrival,
+        //     content.time,
+        //     content.numberOfPassengers,
+        //     content.price,
+        //     receiver.driverId,
+        //     0
+        // )
+        // request.add();
 
-    })
+    });
+
+    socket.on("request-status",(data)=>{
+        console.log("request")
+        socket.to(data.socketId).emit("response",data.status)
+    });
 
     socket.on('disconnect', () => {
         console.log('user disconnected');

@@ -51,6 +51,10 @@ socket.on("all-working-drivers", (drivers) => {
     });
 })
 
+socket.on("response",(data)=>{
+    alert(data);
+})
+
 function sendRequest(driverId,socketId){
 
     const departure = document.getElementById('departure').value;
@@ -62,6 +66,7 @@ function sendRequest(driverId,socketId){
     socket.emit("taxi-request",{
         emitter : {
             clientId : Obj.clientId,
+            full_name : Obj.full_name,
         },
         receiver : {
             driverId : driverId,
