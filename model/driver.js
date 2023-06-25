@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 
 class Driver {
-  constructor(full_name, email, phone,psw) {
+  constructor(full_name,phone,email,psw) {
     this.full_name = full_name;
     this.phone = phone;
     this.email = email;

@@ -12,73 +12,13 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
+
 <style>
-    body{
-        background-color: rgb(215, 215, 215);
-        padding: 0px;
-        margin: 0px;
-    }
-    #map {
-        height: 50vh;
+    #map{
+        height: 600px;
         width: 50%;
     }
-
-    .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-   
-
-    
-
-    .map-image {
-        width: 100%;
-        height: 100%;
-    }
-
-    .client-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .client-card {
-        border: 2px solid black;
-        background-color: white;
-        border-radius: 20px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-
-    .client-card .client-info {
-        display: flex;
-        align-items: center;
-    }
-
-    .client-card .client-info .client-image {
-        width: 60px;
-        height: 60px;
-        border-radius: 40px;
-    }
-
-    .client-card .client-info .client-name {
-        margin: 10px;
-    }
-
-    .accept-button,
-    .refuse-button {
-        background-color: #F9D700;
-        border: 2px solid #F9D700;
-        border-radius: 7px;
-        color: white;
-        margin-top: 10px;
-        padding: 5px;
-        
-    }
 </style>
-
 <body>
 
     <div class="conatiner">
@@ -93,39 +33,7 @@
     </nav>
     </div>
     <div class="container" style="display: flex;">
-        <div class="map-container "id="map" style="width: 55%; margin-left:5px ;border-radius: 20px;margin-top:10px"">
-             </div>
-    
-        <div class="client-container" style="width: 45%; padding: 15px;">
-            <div class="client-card" style="border: 2px solid black; border-radius: 20px; padding: 10px; margin-bottom: 10px;">
-                <div class="client-info" style="display: flex; align-items: center;">
-                    <img class="client-image" src="../img/Moroccan Jabador.jpeg" alt="logo" style="width: 60px; height: 60px; border-radius: 40px;border: 3px solid #F9D700;">
-                    <h3 class="client-name" style="margin: 10px;">Mohamed Alami</h3>
-                </div>
-                <p style="margin-bottom: 5px;">Depart : <span id="depart">Inezgane</span> </p>
-                <p style="margin-bottom: 5px;">Arrivee : <span id="arrivee">Agadir</span> </p>
-                <p style="margin-bottom: 5px;">Nombre de personne : <span id="nbrpr">4</span> </p>
-                <p style="margin-bottom: 5px;">Temps : <span id="temps">Sun Jun 25 2023 14:07</span> </p>
-                <p style="margin-bottom: 5px;">prix : <span id="prix">70 DH</span>  </p>
-                <button class="accept-button" style="background-color: #F9D700; border: 2px solid #F9D700; border-radius: 10px; color: white; margin-top: 10px;">ACCEPTER</button>
-                <button class="refuse-button" style="background-color: #F9D700; border: 2px solid #F9D700; border-radius: 10px; color: white; margin-top: 10px;">REFUSER</button>
-            </div>
-    
-            <div class="client-card" style="border: 2px solid black; border-radius: 20px; padding: 10px; margin-bottom: 10px;">
-                <div class="client-info" style="display: flex; align-items: center;">
-                    <img class="client-image" src="../img/eSW - WITS - top right.png" alt="logo" style="width: 60px; height: 60px; border-radius: 40px;border: 3px solid #F9D700;">
-                    <h3 class="client-name" style="margin: 10px;">Maroua Alaoui</h3>
-                </div>
-                <p style="margin-bottom: 5px;">Depart : <span id="depart">Inezgane</span> </p>
-                <p style="margin-bottom: 5px;">Arrivee : <span id="arrivee">HAY Salam</span> </p>
-                <p style="margin-bottom: 5px;">Nombre de personne : <span id="nbrpr">2</span> </p>
-                <p style="margin-bottom: 5px;">Temps : <span id="temps"> Sun Jun 25 2023 14:07</span> </p>
-                <p style="margin-bottom: 5px;">prix : <span id="prix">50 DH</span>  </p>
-                <button class="accept-button" style="background-color: #F9D700; border: 2px solid #F9D700; border-radius: 10px; color: white; margin-top: 10px;">ACCEPTER</button>
-                <button class="refuse-button" style="background-color: #F9D700; border: 2px solid #F9D700; border-radius: 10px; color: white; margin-top: 10px;">REFUSER</button>
-            </div>
-        </div>
-    
+
         <div id="map" style="width: 0; flex-grow: 1;"></div>
     </div>
     

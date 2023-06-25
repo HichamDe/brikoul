@@ -1,52 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx" class="no-js">
+
 <head>
-  <link rel="stylesheet" href="css/custom/login.css">
-  <title>Login Page</title>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="colorlib">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Taxi</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-  <div class="container">
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" placeholder="Enter your email">
+	<header id="header">
+		<div class="header-top">
+		</div>
+		<div class="container main-menu">
+			<div class="row align-items-center justify-content-between d-flex">
+				<a href="/"><img src="img/logo.png" alt="" title="" /></a>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href="/">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="service.html">Services</a></li>
+						<li><a href="gallery.html">Gallery</a></li>
+						<li class="menu-has-children"><a href="">Blog</a>
+							<ul>
+								<li><a href="blog-home.html">Blog Home</a></li>
+								<li><a href="blog-single.html">Blog Single</a></li>
+								<li class="menu-has-children"><a href="">Level 2</a>
+									<ul>
+										<li><a href="#">Item One</a></li>
+										<li><a href="#">Item Two</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href="/login">login</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</nav><!-- #nav-menu-container -->
+			</div>
+		</div>
+	</header><!-- #header -->
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="psw" placeholder="Enter your password">
-      <label for="user_type">User Type:</label>
-      <select id="user_type" name="type">
-        <option value="driver">Driver</option>
-        <option value="client">Client</option>
-      </select>
+	<!-- start banner Area -->
+	<section class="banner-area relative" id="home">
+		<div class="overlay overlay-bg"></div>
+		<div class="container">
+			<div class="row fullscreen d-flex align-items-center justify-content-between">
+				<div class="banner-content col-lg-6 col-md-6 ">
+					<h6 class="text-white ">Need a ride? just call</h6>
+					<h1 class="text-uppercase">
+						061 598 5542
+					</h1>
+					<p class="pt-10 pb-10 text-white">
+						Whether you enjoy city breaks or extended holidays in the sun, you can always improve your
+						travel experiences by staying in a small.
+					</p>
+					<a href="#" class="primary-btn text-uppercase">Call for taxi</a>
+				</div>
+				<div class="col-lg-4  col-md-6 header-right">
+					<h4 class="pb-30">Login</h4>
+					<form class="form" action="/login" method="POST">
+						<div class="from-group">
+							<input class="form-control txt-field" type="email" name="email" placeholder="Email address"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'">
+							<input class="form-control txt-field" type="password" name="psw" placeholder="Password"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+						</div>
+						<div class="form-group">
+							<div class="default-select" id="default-select">
+								<select name="type">
+									<option value="" disabled selected hidden>Type</option>
+									<option value="client">CLient</option>
+									<option value="driver">Driver</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  <script>
-    function login() {
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
-        let user_type = document.getElementById('user_type').value;
-        
-        
-        if (email === '' || password === '') {
-          alert('Please enter email and password.');
-          return;
-        }
-        const sqlite3 = require('sqlite3').verbose();
-        const db = new sqlite3.Database('database/database.db');
-        db.get('SELECT * FROM client WHERE email = ? AND password = ? AND user_type = ?', [email, password,user_type], (err, row) => {
-            if (err) {
-              console.error(err);
-              res.status(500).json({ success: false, error: 'An error occurred while processing the request.' });
-            } else if (row) {
-              res.json({ success: true, message: 'Login successful!' });
-            } else {
-              res.json({ success: false, message: 'Invalid email or password.' });
-            }
-        })
-    }
-  </script>
+							<button
+								class="btn btn-default btn-lg btn-block text-center text-uppercase">Submit</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End banner Area -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
 </body>
-</html>
 
+</html>

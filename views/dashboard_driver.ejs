@@ -11,6 +11,11 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     #map {
         height: 50vh;
         width: 50%;
@@ -19,10 +24,10 @@
 
 <body>
 
-    <div class="conatiner">
-        <img src="../img/menu-top.jpg" alt="logo" style="width:1400px;height:30px">
+    <div>
+        <img src="../img/menu-top.jpg" alt="logo" style="width:1400px;height:15px">
     </div>
-    <nav class="container-fluid " style="background-color: black;">
+    <nav style="background-color: black;">
         <div class="container d-flex  justify-content-between ">
             <img src="../img/WhatsApp Image 2023-06-24 à 23.53.04.jpg" alt="logo"
                 style="width:80px;height:20px ;margin-top:12px">
@@ -30,64 +35,15 @@
             <link rel="stylesheet" href="">
     </nav>
     </div>
-    <div class="container d-flex">
+    <div>
         <div id="map" class="d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
-        </div>
-
-        <div class="d-inline-block " style="width: 400px;height:90vh;padding: 15px;">
-            <img src="../img/téléchargement.png" alt="notification"
-                style="width: 30px;height: 35px; border-radius: 40px;">
-
-            <div>
-
-                <div>
-                    <div class="client-1 "
-                        style="border: 2px solid black;border-radius: 20px;padding:10px ;margin-top:10px">
-                        <div class="d-flex">
-                            <img class="Img-1" src="../img/téléchargement (1).jpeg" alt="logo"
-                                style="width: 60px;height: 60px; border-radius: 40px;">
-
-                            <h3 style="margin: 10px;">NIssrin Benani</h3>
-                        </div>
-                        <button
-                            style="background-color: #F9D700;border: 2px solid #F9D700;border-radius: 10px; color:white;">INVITER</button>
-                        <button
-                            style="background-color: #F9D700;border: 2px solid #F9D700; border-radius: 10px;color:white;">REFUSER</button>
-                    </div>
-                    <div class="container" style="background-color: #F9D700;">
-                        <form>
-                            <div class="form-group">
-                                <label for="depart">Départ:</label>
-                                <input type="text" class="form-control" id="depart" placeholder="Lieu de départ">
-                            </div>
-                            <div class="form-group">
-                                <label for="arrivee">Arrivée:</label>
-                                <input type="text" class="form-control" id="arrivee" placeholder="Lieu d'arrivée">
-                            </div>
-                            <div class="form-group">
-                                <label for="personnes">Nombre de personnes:</label>
-                                <input type="number" class="form-control" id="personnes"
-                                    placeholder="Nombre de personnes">
-                            </div>
-                            <div class="form-group">
-                                <label for="prix">Prix:</label>
-                                <input type="text" class="form-control" id="prix" placeholder="Prix du voyage">
-
-                                <label for="temps">Temps:</label>
-                                <input type="text" class="form-control" id="temps" placeholder="Durée du voyage">
-                                <button type="submit" class="btn btn-primary">Valider</button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
             const Obj = {
-                clientId : "<%= clientId %>",
+                driverId : "<%= clientId %>",
                 full_name : "<%= full_name %>",
             }
         </script>

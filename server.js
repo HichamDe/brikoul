@@ -12,6 +12,7 @@ const io = new Server(server);
 
 // Schema
 const { Client } = require("./model/client");
+const { RequestTaxi } = require("./model/request");
 const { Driver } = require("./model/driver");
 const { DataBase } = require("./model/database");
 
@@ -19,7 +20,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
-app.set("view engine","ejs");
+app.set("view engine", "ejs");
 // GET
 
 app.get("/", (req, res) => {
@@ -65,13 +66,13 @@ app.post("/login", (req, res) => {
     if (type == "client") {
         let db = new DataBase().clientExist(email, psw);
         db.then((result) => {
-            if(result) res.render("dashboard_client",{clientId : result.id,full_name:result.full_name});
+            if (result) res.render("dashboard_client", { clientId: result.id, full_name: result.full_name });
             else res.redirect("/login");
         })
-    }else if(type == "driver"){
+    } else if (type == "driver") {
         let db = new DataBase().driverExist(email, psw);
         db.then((result) => {
-            if(result) res.render("dashboard_driver",{clientId : result.id,full_name:result.full_name});
+            if (result) res.render("dashboard_driver", { clientId: result.id, full_name: result.full_name });
             else res.redirect("/login");
         })
     }
@@ -88,17 +89,49 @@ io.on("connection", (socket) => {
 
     // online
     socket.on("online-client", (data) => {
-        let { id, type, longitude, latitude } = data;
-        clients.push({ socketId: socket.id, id, type, latitude, longitude });
-
-
+        let { clientId, longitude, latitude } = data;
+        clients.push({ socketId: socket.id, clientId, latitude, longitude });
     });
 
     socket.on("online-driver", (data) => {
-        let { id, type, longitude, latitude } = data;
-        drivers.push({ socketId: socket.id, id, type, latitude, longitude });
+        let { driverId, longitude, latitude } = data;
+        drivers.push({ socketId: socket.id, driverId, latitude, longitude });
         // send to the clients the updates
         socket.broadcast.emit("all-working-drivers", drivers)
+    });
+
+    socket.on("taxi-request", (data) => {
+        console.log(data);
+        let { emitter, receiver, content } = data;
+        emitter.socketId = socket.id;
+        clients.forEach(client => {
+            if (client.socketId === socket.id) {
+                emitter = {
+                    clientId: client.clientId,
+                    latitude: client.latitude,
+                    longitude: client.longitude,
+                    socketId: socket.id
+                }
+            }
+        })
+        socket.to(receiver.socketId).emit("taxi-request", {
+            content,
+            emitter
+
+        });
+
+        let request = new RequestTaxi(
+            emitter.clientId,
+            content.departure,
+            content.arrival,
+            content.time,
+            content.numberOfPassengers,
+            content.price,
+            receiver.driverId,
+            0
+        )
+        request.add();
+
     })
 
     socket.on('disconnect', () => {

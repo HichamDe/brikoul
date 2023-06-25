@@ -2,8 +2,8 @@ const socket = io();
 
 navigator.geolocation.getCurrentPosition(position => {
     socket.emit("online-client", {
-        id: 0,
-        type: "client",
+        clientId : Obj.clientId,
+        full_name: Obj.full_name,
         longitude: position.coords.longitude,
         latitude: position.coords.latitude
     })
@@ -17,8 +17,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 socket.on("all-working-drivers", (drivers) => {
     drivers.forEach(driver => {
         L.marker([driver.latitude, driver.longitude], {
-            title: "Hmad Obihi",
-            // icon:myIcon
+            title: driver.full_name,
         }).addTo(map)
             .bindPopup(`
             <div class="popup">
@@ -45,13 +44,35 @@ socket.on("all-working-drivers", (drivers) => {
                         <input type="number" id="price" name="price" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit">Submit</button>
+                        <button type="submit" onclick="sendRequest(${driver.driverId},'${driver.socketId}')">Submit</button>
                     </div>
                 </form>
             </div>`);
     });
 })
 
-function sendRequest(driverId){
+function sendRequest(driverId,socketId){
 
+    const departure = document.getElementById('departure').value;
+    const arrival = document.getElementById('arrival').value;
+    const time = document.getElementById('time').value;
+    const numberOfPassengers = parseInt(document.getElementById('numberOfPassengers').value);
+    const price = parseFloat(document.getElementById('price').value);
+
+    socket.emit("taxi-request",{
+        emitter : {
+            clientId : Obj.clientId,
+        },
+        receiver : {
+            driverId : driverId,
+            socketId : socketId
+        },
+        content : {
+            departure,
+            arrival,
+            time,
+            numberOfPassengers,
+            price
+        }
+    })
 }
