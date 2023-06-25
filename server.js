@@ -36,21 +36,25 @@ let drivers = [];
 io.on("connection",(socket)=>{
 
     // online
-    socket.on("online",(data)=>{
+    socket.on("online-client",(data)=>{
         let {id,type,longitude,latitude} = data;
-        if(type=="client") clients.push({id,type,latitude,longitude});
-        else if (type=="driver") drivers.push({id,type,latitude,longitude});
-
-        // send to the clients the updates
-        clients.forEach(client => {
-            socket.broadcast.emit("all-working-drivers",drivers)
-        });
+        clients.push({socketId:socket.id,id,type,latitude,longitude});
+        
+        
     });
     
+    socket.on("online-driver",(data)=>{
+        let {id,type,longitude,latitude} = data;
+        drivers.push({socketId:socket.id,id,type,latitude,longitude});
+        // send to the clients the updates
+        socket.broadcast.emit("all-working-drivers",drivers)
+    })
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 })
-
+// io.of("/dashboard_client").on("connection",(socket)=>{
+//     console.log("user connected from client dashboard")
+// })
 server.listen(PORT,console.log(`Server Running at ${PORT}`));

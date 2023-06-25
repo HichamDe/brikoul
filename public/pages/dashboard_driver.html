@@ -31,9 +31,7 @@
     </nav>
     </div>
     <div class="container d-flex">
-        <div class="map d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
-            <img src="../img/maps.png" alt="maps" style="width:600px;height: 600px; ">
-
+        <div id="map" class="d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
         </div>
 
         <div class="d-inline-block " style="width: 400px;height:90vh;padding: 15px;">
@@ -85,27 +83,9 @@
             </div>
         </div>
 
-        
+
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-            const socket = io();
-
-            navigator.geolocation.getCurrentPosition(position => {
-                socket.emit("online", {
-                    id: 0,
-                    type: "driver",
-                    longitude: position.coords.longitude,
-                    latitude: position.coords.latitude
-                })
-            })
-
-            let map = L.map('map').setView([30.35937, -9.52816], 13);
-
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-            }).addTo(map);
-
-        </script>
+        <script src="js/custom/dashboard_driver.js"></script>
 </body>
 
 </html>

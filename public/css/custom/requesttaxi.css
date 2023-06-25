@@ -1,24 +1,21 @@
-body {
-    background-color: black;
-}
 .popup {
-    max-width: 300px;
+  max-width: 300px;
   margin: 0 auto;
   padding: 20px;
-    background-color: #F9D700;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  }
+  background-color: #F9D700;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 7px;
 }
 
 .form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .form-group input {

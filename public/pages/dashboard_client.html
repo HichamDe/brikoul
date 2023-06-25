@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/custom/requesttaxi.css">
     <title>Client</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -32,9 +33,7 @@
     </nav>
     </div>
     <div class="container d-flex">
-        <div class="map d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
-            <img src="../img/maps.png" alt="maps" style="width:600px;height: 600px; ">
-
+        <div id="map" class=" d-inline-block " style="border: 2px solid black;width: 600px;height:90vh">
         </div>
 
         <div class="d-inline-block " style="width: 400px;height:90vh;padding: 15px;">
@@ -82,34 +81,7 @@
 
 
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-            const socket = io();
-
-            navigator.geolocation.getCurrentPosition(position => {
-                socket.emit("online", {
-                    id: 0,
-                    type: "client",
-                    longitude: position.coords.longitude,
-                    latitude: position.coords.latitude
-                })
-            })
-
-            let map = L.map('map').setView([30.35937, -9.52816], 13);
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-            }).addTo(map);
-
-            socket.on("all-working-drivers", (drivers) => {
-                drivers.forEach(driver => {
-                    L.marker([driver.latitude, driver.longitude], {
-                        title: "Hmad Obihi",
-                        // icon:myIcon
-                    }).addTo(map)
-                        .bindPopup("<b>Call Me!</b><br>I am Hmad obihi.");
-                });
-            })
-
-        </script>
+        <script src="js/custom/dashboard_client.js"></script>
 </body>
 
 </html>

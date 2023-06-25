@@ -1,8 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 
 class RequestTaxi {
-  constructor(clientName, departure, arrival, time, numberOfPassengers, price) {
-    this.clientName = clientName;
+  constructor(clientId, departure, arrival, time, numberOfPassengers, price,id=null) {
+    this.id = id,
+    this.clientId = clientId;
     this.departure = departure;
     this.arrival = arrival;
     this.time = time;
@@ -10,13 +11,13 @@ class RequestTaxi {
     this.price = price;
   }
 
-  addRequest() {
-    const db = new sqlite3.Database('../database/database.db'); 
+  add() {
+    const db = new sqlite3.Database('database/database.db'); 
 
     // Insert request data into the 'requests' table
-    const sql = `INSERT INTO requests (clientName, departure, arrival, time, numberOfPassengers, price) VALUES (?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO request (clientId, departure, arrival, time, numberOfPassengers, price) VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [
-      this.clientName,
+      this.clientId,
       this.departure,
       this.arrival,
       this.time,
@@ -35,11 +36,11 @@ class RequestTaxi {
     db.close();
   }
 
-  updateRequest() {
-    const db = new sqlite3.Database('../database/database.db'); 
+  update() {
+    const db = new sqlite3.Database('database/database.db'); 
 
     // Update request data in the 'requests' table
-    const sql = `UPDATE requests SET departure = ?, arrival = ?, time = ?, numberOfPassengers = ?, price = ? WHERE clientName = ?`;
+    const sql = `UPDATE request SET departure = ?, arrival = ?, time = ?, numberOfPassengers = ?, price = ? WHERE clientName = ?`;
     const values = [
       this.departure,
       this.arrival,
@@ -60,11 +61,11 @@ class RequestTaxi {
     db.close();
   }
 
-  deleteRequest() {
-    const db = new sqlite3.Database('../database/database.db'); 
+  delete() {
+    const db = new sqlite3.Database('database/database.db'); 
 
     // Delete request data from the 'requests' table
-    const sql = `DELETE FROM requests WHERE clientName = ?`;
+    const sql = `DELETE FROM request WHERE clientName = ?`;
     const value = this.clientName;
 
     db.run(sql, value, function(err) {
@@ -78,3 +79,6 @@ class RequestTaxi {
     db.close();
   }
 }
+
+let request = new RequestTaxi(0,"sdf","sdf","sdf",15,200);
+request.add()

@@ -7,12 +7,12 @@ class Client {
     this.phone = phone;
   }
 
-  addClient() {
-    const db = new sqlite3.Database('../database/database.db'); 
+  add() {
+    const db = new sqlite3.Database('database/database.db'); 
 
     // Insert client data into the 'clients' table
-    const sql = `INSERT INTO clients (full_name, email, phone) VALUES (?, ?, ?)`;
-    const values = [this.full_name, this.email, this.phone];
+    const sql = `INSERT INTO client (full_name,  phone ,email) VALUES (?, ?, ?)`;
+    const values = [this.full_name, this.phone, this.email];
 
     db.run(sql, values, function(err) {
       if (err) {
@@ -26,5 +26,5 @@ class Client {
   }
 }
 // Create a new client and insert into the database
-const client = new Client('aya alaoui', 'aya.alaoui@gmail.com', '0621456587');
-client.addClient();
+const client = new Client('aya alaoui', '0621456587','aya.alaoui@gmail.com');
+client.add();

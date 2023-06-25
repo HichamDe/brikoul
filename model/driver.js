@@ -3,16 +3,16 @@ const sqlite3 = require('sqlite3').verbose();
 class Driver {
   constructor(full_name, email, phone) {
     this.full_name = full_name;
-    this.email = email;
     this.phone = phone;
+    this.email = email;
   }
 
-  addDriver() {
-    const db = new sqlite3.Database('../database/database.db'); 
+  add() {
+    const db = new sqlite3.Database('database/database.db'); 
 
     // Insert driver data into the 'drivers' table
-    const sql = `INSERT INTO drivers (full_name, email, phone) VALUES (?, ?, ?)`;
-    const values = [this.full_name, this.email, this.phone];
+    const sql = `INSERT INTO driver (full_name,phone,email) VALUES (?, ?, ?)`;
+    const values = [this.full_name, this.phone,this.email];
 
     db.run(sql, values, function(err) {
       if (err) {
@@ -25,3 +25,5 @@ class Driver {
     db.close();
   }
 }
+let driver = new Driver("hmad obihi","hmadobihi@gmail.com","06066544448");
+driver.add()
