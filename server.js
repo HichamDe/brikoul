@@ -10,6 +10,10 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// GET
 
 app.get("/",(req,res)=>{
     res.sendFile(index);
@@ -29,6 +33,14 @@ app.get("/dashboard_driver",(req,res)=>{
 app.get("/maps",(req,res)=>{
     res.sendFile(maps)
 })
+
+// POST
+app.post("/sign-up",(req,res)=>{
+    let { full_name , phone , email} = req.body ;
+    console.log(req.body)
+})
+
+
 
 let clients = [];
 let drivers = [];
