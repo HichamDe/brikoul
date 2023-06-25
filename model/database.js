@@ -1,25 +1,40 @@
 const sqlite3 = require('sqlite3').verbose();
 
 class DataBase {
-    constructor(){
-        this.db = new sqlite3.Database('database/database.db'); 
-    }
 
-    clientExist(email){
-        const sql = `SELECT * FROM client WHERE email=?`;
-        this.db.run(sql, [email] , function(err) {
-          if (err) throw err;
-          else {
-            return sql.length;
-          }
+    clientExist(email, psw) {
+
+        return new Promise((resolve, reject) => {
+            const db = new sqlite3.Database('database/database.db');
+
+            db.get('SELECT * FROM client WHERE email = ? AND psw = ?', [email, psw], function (error, row) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(row);
+                }
+
+                db.close();
+            });
         });
-        this.db.close()
     }
-    driverExist(){
-        
-    }
+    driverExist(email, psw) {
 
+        return new Promise((resolve, reject) => {
+            const db = new sqlite3.Database('database/database.db');
+
+            db.get('SELECT * FROM driver WHERE email = ? AND psw = ?', [email, psw], function (error, row) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(row);
+                }
+
+                db.close();
+            });
+        });
+    }
 }
 
-let db = new DataBase().clientExist("hmad.obihi@gmail.com");
-console.log(db)
+
+module.exports = { DataBase };

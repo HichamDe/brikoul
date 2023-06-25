@@ -91,13 +91,15 @@
 								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'">
 							<input class="form-control txt-field" type="tel" name="phone" placeholder="Phone number"
 								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
+							<input class="form-control txt-field" type="password" name="psw" placeholder="Password"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 						</div>
 						<div class="form-group">
 							<div class="default-select" id="default-select">
-								<select>
+								<select name="type">
 									<option value="" disabled selected hidden>Type</option>
-									<option value="1">CLient</option>
-									<option value="2">Taxi Driver</option>
+									<option value="client">CLient</option>
+									<option value="driver">Taxi Driver</option>
 								</select>
 							</div>
 						</div>

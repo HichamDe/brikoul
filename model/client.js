@@ -1,18 +1,19 @@
 const sqlite3 = require('sqlite3').verbose();
 
 class Client {
-  constructor(full_name, phone, email) {
+  constructor(full_name, phone, email,psw) {
     this.full_name = full_name;
     this.phone = phone;
     this.email = email;
+    this.psw = psw;
   }
 
   add() {
     const db = new sqlite3.Database('database/database.db'); 
 
     // Insert client data into the 'clients' table
-    const sql = `INSERT INTO client (full_name,phone ,email) VALUES (?, ?, ?)`;
-    const values = [this.full_name, this.phone, this.email];
+    const sql = `INSERT INTO client (full_name,phone ,email,psw) VALUES (?, ?, ?,?)`;
+    const values = [this.full_name, this.phone, this.email,this.psw];
 
     db.run(sql, values, function(err) {
       if (err) {
@@ -24,6 +25,6 @@ class Client {
     db.close();
   }
 }
-// Create a new client and insert into the database
-const client = new Client('hmad obihi', '656587','hmad.obihi@gmail.com');
-client.add();
+
+
+module.exports = {Client};

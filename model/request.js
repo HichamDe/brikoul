@@ -80,5 +80,4 @@ class RequestTaxi {
   }
 }
 
-let request = new RequestTaxi(0,"sdf","sdf","sdf",15,200);
-request.add()
+module.exports = {RequestTaxi};
